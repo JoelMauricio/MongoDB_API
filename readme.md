@@ -1,2 +1,12 @@
-Para ejecutar se debemo iniciar el ambiente virtual con "venv\Scripts\activate"
-Luego, ejecutar el respectivo shell script de la coleccion de datos que se desea acceder
+Para ejecutar se debe inicializar un ambiente virtual
+```python
+python -m venv <nombre_ambiente>
+```
+Luego, deberá instalar las dependencias
+```python
+pip install -r requirements.txt
+```
+y por ultimo, solo debe ejecutar el archivo main.py
+```python
+python main.py
+```
