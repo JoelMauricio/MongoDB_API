@@ -34,134 +34,134 @@ consulta1 = restaurants.aggregate([
     }
 ])
 
-# consulta2 = restaurants.aggregate([
-#   {'$project': {
-#     '_id':0,
-#     'name': 1,
-#     'rating': {'$avg': "$grades.score"}
-#   }},
-#   {'$sort': {'rating': -1}},
-#   {'$limit': 5}
-# ])
+consulta2 = restaurants.aggregate([
+  {'$project': {
+    '_id':0,
+    'name': 1,
+    'rating': {'$avg': "$grades.score"}
+  }},
+  {'$sort': {'rating': -1}},
+  {'$limit': 5}
+])
 
-# consulta3 = restaurants.aggregate([
-#   {'$project': {
-#     'name': 1,
-#     'rating': {'$avg': "$grades.score"}
-#   }},
-#   {'$sort': {'rating': -1}},
-#   {'$limit': 50},
-#   {'$project': {
-#     'name': 1,
-#     'rating': 1,
-#     'calificacion': {
-#       '$cond': {
-#         'if': {'$gt': ["$rating", 20]},
-#         'then': "A",
-#         'else': {'$cond': {
-#           'if': {'$gt': ["$rating", 13]},
-#           'then': "B",
-#           'else': "C"
-#         }}
-#       }
-#     }
-#   }}
-# ])
+consulta3 = restaurants.aggregate([
+  {'$project': {
+    'name': 1,
+    'rating': {'$avg': "$grades.score"}
+  }},
+  {'$sort': {'rating': -1}},
+  {'$limit': 50},
+  {'$project': {
+    'name': 1,
+    'rating': 1,
+    'calificacion': {
+      '$cond': {
+        'if': {'$gt': ["$rating", 20]},
+        'then': "A",
+        'else': {'$cond': {
+          'if': {'$gt': ["$rating", 13]},
+          'then': "B",
+          'else': "C"
+        }}
+      }
+    }
+  }}
+])
 
-# consulta4 = restaurants.aggregate([
-#   {'$unwind': "$grades"},
-#   {'$sort': {"grades.date": 1}},
-#   {'$limit': 1},
-#   {'$project': {"_id": 0, "oldest_review": "$grades"}}
-# ])
+consulta4 = restaurants.aggregate([
+  {'$unwind': "$grades"},
+  {'$sort': {"grades.date": 1}},
+  {'$limit': 1},
+  {'$project': {"_id": 0, "oldest_review": "$grades"}}
+])
 
-# consulta5 = openings.aggregate([
-#   { '$unwind': { 'path': "$operating_hours" } },
-#   {
-#     '$project': {
-#       '_id': 0,
-#       'name': 1,
-#       'closed': {
-#         '$switch': {
-#           'branches': [
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Monday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Monday",
-#             },
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Tuesday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Tuesday",
-#             },
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Wednesday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Wednesday",
-#             },
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Thursday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Thursday",
-#             },
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Friday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Friday",
-#             },
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Saturday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Saturday",
-#             },
-#             {
-#               'case': {
-#                 '$eq': [
-#                   "$operating_hours.Sunday",
-#                   "Closed",
-#                 ],
-#               },
-#               'then': "Sunday",
-#             },
-#           ],
-#           'default': "Open Everyday",
-#         },
-#       },
-#     },
-#   },
-# ])
+consulta5 = openings.aggregate([
+  { '$unwind': { 'path': "$operating_hours" } },
+  {
+    '$project': {
+      '_id': 0,
+      'name': 1,
+      'closed': {
+        '$switch': {
+          'branches': [
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Monday",
+                  "Closed",
+                ],
+              },
+              'then': "Monday",
+            },
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Tuesday",
+                  "Closed",
+                ],
+              },
+              'then': "Tuesday",
+            },
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Wednesday",
+                  "Closed",
+                ],
+              },
+              'then': "Wednesday",
+            },
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Thursday",
+                  "Closed",
+                ],
+              },
+              'then': "Thursday",
+            },
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Friday",
+                  "Closed",
+                ],
+              },
+              'then': "Friday",
+            },
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Saturday",
+                  "Closed",
+                ],
+              },
+              'then': "Saturday",
+            },
+            {
+              'case': {
+                '$eq': [
+                  "$operating_hours.Sunday",
+                  "Closed",
+                ],
+              },
+              'then': "Sunday",
+            },
+          ],
+          'default': "Open Everyday",
+        },
+      },
+    },
+  },
+])
 
 
 # print(list(consulta1))
 # print()
-# print(list(Top_5_puntaje))
+# print(list(consulta2))
 # print
-# print(list(restaurantes_por_puntaje))
+# print(list(consulta3))
 # print
-# print(list(review_antiguo))
+# print(list(consulta4))
 # print
-# print(list(dias_cierran))
+# print(list(consulta5))
