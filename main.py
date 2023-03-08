@@ -10,16 +10,11 @@ restaurants = db['restaurants']
 openings = db['restaurantsOpenings']
 
 #Cargando los JSON para insertar
-with open("./data/restaurants.json", "r") as f:
-    data_r = json.load(f)
-#
-with open("./data/restaurantsOpening.json", "r") as ff:
-    data_ro = json.load(ff)
-#
-##Insertar los JSON, da problemas
-#restaurants.insert_many(data_r)
-#
-#openings.insert_many(data_ro)
+with open('data/restaurants.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+#Insertar los JSON, da problemas
+restaurants.insert_many(data)
 
 tipos_cocina_sector = restaurants.aggregate([
    {'$group':
