@@ -10,3 +10,5 @@ y por ultimo, solo debe ejecutar el archivo main.py
 ```python
 python main.py
 ```
+
+O, simplemente ejecuta el archivo `.sh`
