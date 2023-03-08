@@ -1,5 +1,3 @@
-import json
-import os
 from database import get_database
 # from dotenv import load_dotenv 
 #load_dotenv('.env')
@@ -16,7 +14,8 @@ openings = db['restaurantsOpenings']
 # #Insertar los JSON, da problemas
 # restaurants.insert_many(data)
 
-consulta1 = restaurants.aggregate([
+def consulta1():
+    result = restaurants.aggregate([
     {
         '$group': {
             '_id': {
@@ -33,8 +32,10 @@ consulta1 = restaurants.aggregate([
         }
     }
 ])
+    return list(result)
 
-consulta2 = restaurants.aggregate([
+def consulta2():
+  result = restaurants.aggregate([
   {'$project': {
     '_id':0,
     'name': 1,
@@ -43,8 +44,10 @@ consulta2 = restaurants.aggregate([
   {'$sort': {'rating': -1}},
   {'$limit': 5}
 ])
+  return list(result)
 
-consulta3 = restaurants.aggregate([
+def consulta3():
+  result = restaurants.aggregate([
   {'$project': {
     'name': 1,
     'rating': {'$avg': "$grades.score"}
@@ -67,15 +70,19 @@ consulta3 = restaurants.aggregate([
     }
   }}
 ])
+  return list(result)
 
-consulta4 = restaurants.aggregate([
+def consulta4(): 
+  result = restaurants.aggregate([
   {'$unwind': "$grades"},
   {'$sort': {"grades.date": 1}},
   {'$limit': 1},
   {'$project': {"_id": 0, "oldest_review": "$grades"}}
 ])
+  return list(result)
 
-consulta5 = openings.aggregate([
+def consulta5(): 
+  result = openings.aggregate([
   { '$unwind': { 'path': "$operating_hours" } },
   {
     '$project': {
@@ -154,6 +161,7 @@ consulta5 = openings.aggregate([
     },
   },
 ])
+  return list(result)
 
 
 # print(list(consulta1))
