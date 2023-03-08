@@ -1,8 +1,11 @@
 from pymongo import MongoClient
-import configuration as C
+from dotenv import load_dotenv 
+load_dotenv('.env')
+
+import os
 
 #def get_database():
-client = MongoClient(C.LOCAL_CONNECTION_STRING)
+client = MongoClient(os.environ.get('LOCAL_CONNECTION_STRING'))
 db = client['restaurants']
     #return client['NOSQL']
 
