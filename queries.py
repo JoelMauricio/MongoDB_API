@@ -49,6 +49,7 @@ def consulta2():
 def consulta3():
   result = restaurants.aggregate([
   {'$project': {
+    '_id':0,
     'name': 1,
     'rating': {'$avg': "$grades.score"}
   }},
