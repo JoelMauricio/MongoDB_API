@@ -5,7 +5,9 @@ from uvicorn import run
 
 import queries as q
 import logging
-import config as C
+
+import os
+from dotenv import load_dotenv
 
 #setting up the logging
 logging.Logger(name="Logs")
@@ -71,4 +73,4 @@ def index():
 
 if __name__ == '__main__':
     logging.info("Se inicializó el API")
-    run(app, port=C.PORT)
+    run(app, port=int(os.getenv('PORT')))

@@ -1,15 +1,13 @@
 from pymongo import MongoClient
-import config as C
-# from dotenv import load_dotenv 
-# load_dotenv('.env')
-
 import os
+from dotenv import load_dotenv 
+load_dotenv('.env')
+
+string=os.getenv('CLOUD_CONNECTION_STRING')
 
 def get_database():
-    # client = MongoClient(os.environ.get('LOCAL_CONNECTION_STRING'))
-    # db = client[os.environ.get('DB_NAME')]
-    client = MongoClient(C.CLOUD_CONNECTION_STRING)
-    db = client[C.DB_NAME]
+    client = MongoClient(string)
+    db = client[os.getenv('DB_NAME')]
     return db
 
 if __name__ == "__main__":

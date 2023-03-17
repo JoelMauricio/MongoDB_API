@@ -1,18 +1,9 @@
 from database import get_database
-# from dotenv import load_dotenv 
-#load_dotenv('.env')
 
 db = get_database()
 
 restaurants = db['restaurants']
 openings = db['restaurantsOpenings']
-
-# #Cargando los JSON para insertar
-# with open('data/restaurants.json', 'r', encoding='utf-8') as f:
-#     data = json.load(f)
-
-# #Insertar los JSON, da problemas
-# restaurants.insert_many(data)
 
 def consulta1():
     result = restaurants.aggregate([
@@ -163,14 +154,3 @@ def consulta5():
   },
 ])
   return list(result)
-
-
-# print(list(consulta1))
-# print()
-# print(list(consulta2))
-# print
-# print(list(consulta3))
-# print
-# print(list(consulta4))
-# print
-# print(list(consulta5))
