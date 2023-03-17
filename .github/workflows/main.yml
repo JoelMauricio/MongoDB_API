@@ -31,11 +31,11 @@ jobs:
           else
               pip-sync requirements.txt
           fi
-#       - name: Lint code with Flake8
-#         run: |
-#           flake8 ./api/ schemas.py
-#         continue-on-error: true
 
+      - name: Lint code with Flake8
+        run: |
+          flake8 ./main.py
+        continue-on-error: true
 #       - name: Test with PyTest
 #         run: pytest tests --doctest-modules --junitxml=junit/test-results-${{ github.ref_name }}.xml
 
