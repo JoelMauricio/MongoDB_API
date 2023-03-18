@@ -126,3 +126,9 @@
 2023-03-17 19:37:50,901 Se cargó el directorio principal
 2023-03-17 19:38:03,715 se intenta retornar los datos de la consulta 1
 2023-03-17 19:38:18,516 se intenta retornar los datos de la consulta 5
+2023-03-17 22:05:03,892 Se inicializó el API
+2023-03-17 22:05:03,927 Using proactor: IocpProactor
+2023-03-17 22:05:06,056 Se cargó el directorio principal
+2023-03-17 22:05:17,035 se intenta retornar los datos de la consulta 3
+2023-03-17 22:05:23,454 se intenta retornar los datos de la consulta 2
+2023-03-17 22:05:29,318 se intenta retornar los datos de la consulta 1
