@@ -16,4 +16,4 @@ RUN chmod u+x ./scripts/run.sh
 
 EXPOSE 8000
 
-CMD [ "./run.sh" ]
+CMD [ "./scripts/run.sh" ]
