@@ -42,15 +42,15 @@ jobs:
         run: |
           autopep8 --aggressive --list-fixes main.py
 
-  #       - name: Test with PyTest
-  #         run: pytest tests --doctest-modules --junitxml=junit/test-results-${{ github.ref_name }}.xml
+      - name: Test with PyTest
+        run: pytest test_queries.py --doctest-modules --junitxml=junit/test-results-${{ github.ref_name }}.xml
 
-  #       - name: Upload pytest test results
-  #         uses: actions/upload-artifact@v3
-  #         with:
-  #           name: test-results-${{ github.ref_name }}.xml
-  #           path: junit/test-results-${{ github.ref_name }}.xml
-  #         if: ${{ always() }}
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-${{ github.ref_name }}.xml
+          path: junit/test-results-${{ github.ref_name }}.xml
+        if: ${{ always() }}
 
   delivery:
     runs-on: ubuntu-22.04
